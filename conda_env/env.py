@@ -113,7 +113,6 @@ def from_environment(
     variables = pd.get_environment_env_vars()
 
     precs = tuple(PrefixGraph(pd.iter_records()).graph)
-
     if from_history:
         # subset precs to those in history
         hist = History(prefix).get_requested_specs_map()
@@ -121,7 +120,6 @@ def from_environment(
         precs = tuple(prec for prec in precs if prec.name in hist_keys)
 
     grouped_precs = groupby(lambda x: x.package_type, precs)
-
     conda_precs = sorted(
         (
             *grouped_precs.get(None, ()),
